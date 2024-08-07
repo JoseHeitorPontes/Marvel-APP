@@ -22,10 +22,10 @@ export function CharacterCard({
             <View style={styles.card}>
                 <Image
                     style={styles.image}
-                    {...(hasImageNotFound ? ({ source: require("../../../assets/image-not-found.png")}) : ({source: { uri: characterImageUrl }}))}
+                    {...(hasImageNotFound ? ({ source: require("../../../assets/image-not-found.png")}) : ({ source: { uri: characterImageUrl }}))}
                 />
 
-                <Text style={styles.title}>{formatedCharacterName}</Text>
+                <Text style={styles.title}>{character.name}</Text>
 
                 <Button title="DETAILS" color="#f0141e" onPress={onPressButton} />
             </View>
