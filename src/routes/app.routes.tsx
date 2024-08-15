@@ -7,8 +7,7 @@ import { CharacterDetails } from "@/screens/CharacterDetails";
 export type RootStackProps = {
   Characters: object | undefined;
   CharacterDetails: {
-    characterId: number;
-    characterName: string;
+    character: Character;
   };
 };
 

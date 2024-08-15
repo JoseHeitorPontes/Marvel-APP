@@ -85,7 +85,7 @@ export function Characters() {
                 style={{ marginTop: 15 }}
                 keyExtractor={(_, index) => `character-${index}`}
                 data={characterResponseData?.data?.results}
-                renderItem={({ item: character }) => <CharacterCard character={character} onPressButton={() => navigation.navigate("CharacterDetails", { characterId: character.id, characterName: character.name })} />}
+                renderItem={({ item: character }) => <CharacterCard character={character} onPressButton={() => navigation.navigate("CharacterDetails", { character })} />}
                 onEndReached={() => fetchCharacters()}
                 onEndReachedThreshold={0.1}
                 ListFooterComponent={<LoadingContainer />}
