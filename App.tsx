@@ -1,8 +1,12 @@
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "react-native";
 import Routes from "./src/routes/app.routes";
 
 export default function App() {
   return (
-    <Routes />
+    <>
+      <Routes />
+
+      <StatusBar translucent />
+    </>
   );
 }

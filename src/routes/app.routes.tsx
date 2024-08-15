@@ -6,7 +6,10 @@ import { CharacterDetails } from "@/screens/CharacterDetails";
 
 export type RootStackProps = {
   Characters: object | undefined;
-  CharacterDetails: object | undefined;
+  CharacterDetails: {
+    characterId: number;
+    characterName: string;
+  };
 };
 
 export type NativeScreens = NativeStackNavigationProp<RootStackProps>;
@@ -16,12 +19,7 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerTintColor: "#b30707",
-        headerStyle: {
-          backgroundColor: "#111",
-        }
-      }}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name="Characters"
           component={Characters}
@@ -29,7 +27,6 @@ export default function Routes() {
         <Stack.Screen
           name="CharacterDetails"
           component={CharacterDetails}
-          options={{ title: "Details" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

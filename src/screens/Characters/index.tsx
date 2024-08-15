@@ -6,6 +6,7 @@ import { api } from "@/services/api";
 import { useDebounce } from "@/hooks/useDebounce";
 import { NativeScreens } from "@/routes/app.routes";
 
+import { Header } from "@/components/Header";
 import { Loading } from "@/components/Loading";
 import { CharacterCard } from "@/components/CharacterCard";
 
@@ -16,19 +17,22 @@ export function Characters() {
 
     const isFirstRender = useRef(true);
 
-    const [offset, setOffset] = useState(0);
+    const offset = useRef<number>(0);
     const [search, setSearch] = useState("");
     const debouncedSearch = useDebounce(search, 1000);
     const [characterResponseData, setCharacterResponseData] = useState<ResponseDataCharacter>({} as ResponseDataCharacter);
 
-    async function fetchCharacters() {
+    async function fetchCharacters(nameCharacter?: string) {
         try {
             const response = await api.get<ResponseDataCharacter>("/characters", {
                 params: {
-                    offset,
-                    ...(debouncedSearch && { name: debouncedSearch }),
+                    offset: offset.current,
+                    ...(nameCharacter && { name: nameCharacter }),
                 }
             });
+
+            const newOffsetNumber = offset.current + 20;
+            offset.current = newOffsetNumber;
 
             setCharacterResponseData({
                 ...response.data, 
@@ -45,6 +49,19 @@ export function Characters() {
         }
     }
 
+    function LoadingContainer() {
+        const totalCharacters = characterResponseData?.data?.total;
+        const currentTotalCharacters = characterResponseData?.data?.results?.length
+
+        const hasMoreCharacters = currentTotalCharacters > totalCharacters;
+
+        if (hasMoreCharacters) {
+            return null;
+        }
+
+        return <Loading />
+    }
+
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
@@ -52,11 +69,13 @@ export function Characters() {
             return;
         }
 
-        fetchCharacters();
-    }, [debouncedSearch, offset]);
+        fetchCharacters(debouncedSearch);
+    }, [debouncedSearch]);
 
     return (
         <View style={styles.container}>
+            <Header showLogo />
+
             <View style={styles.containerSearch}>
                 <TextInput style={styles.search} cursorColor="#000" placeholder="Search character name" onChangeText={setSearch} value={search} />
             </View>
@@ -64,12 +83,14 @@ export function Characters() {
             <FlatList
                 numColumns={2}
                 style={{ marginTop: 15 }}
-                keyExtractor={(character) => `character-${character.id}`}
+                keyExtractor={(_, index) => `character-${index}`}
                 data={characterResponseData?.data?.results}
-                renderItem={({ item: character }) => <CharacterCard character={character} onPressButton={() => navigation.navigate("CharacterDetails", { characterId: character.id })} />}
-                onEndReached={() => setOffset(offset + 20)}
+                renderItem={({ item: character }) => <CharacterCard character={character} onPressButton={() => navigation.navigate("CharacterDetails", { characterId: character.id, characterName: character.name })} />}
+                onEndReached={() => fetchCharacters()}
                 onEndReachedThreshold={0.1}
-                ListFooterComponent={<Loading />}
+                ListFooterComponent={<LoadingContainer />}
+                showsVerticalScrollIndicator={false}
+                columnWrapperStyle={{ justifyContent: "space-around" }}
             />
         </View>
     );

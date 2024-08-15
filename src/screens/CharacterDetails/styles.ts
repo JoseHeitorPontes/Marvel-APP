@@ -1,16 +1,17 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    loadingContainer: {
-        height: "100%",
-        display: "flex",
-        alignContent: "center",
-        justifyContent: "center"
-    },
     container: {
         paddingVertical: 15,
         height: "100%",
-        display: "flex",
+    },
+    loadingContainer: {
+        height: "100%",
+        flexDirection: "column",
+        alignContent: "center",
+        justifyContent: "center"
+    },
+    detailsContainer: {
         flexDirection: "column",
         alignItems: "center",
         gap: 15,
@@ -24,14 +25,13 @@ export const styles = StyleSheet.create({
         fontSize: 20,
     },
     description: {
-        paddingHorizontal: 15,
+        paddingHorizontal: 20,
         fontSize: 15,
         textAlign: "justify"
     },
     buttonsContainer: {
         width: "100%",
         paddingHorizontal: 15,
-        display: "flex",
         flexDirection: "column",
         gap: 15,
     }

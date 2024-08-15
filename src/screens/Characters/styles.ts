@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     search: {
-        width: "95%",
+        width: "90%",
         paddingVertical: 2,
         paddingHorizontal: 8,
         fontSize: 15,
