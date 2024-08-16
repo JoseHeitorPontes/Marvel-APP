@@ -47,7 +47,7 @@ export function CharacterComics() {
                 data={comicResponseData?.data?.results}
                 renderItem={({ item: comic }) => <ComicCard comic={comic} />}
                 ListFooterComponent={<Loading />}
-                
+                style={{ padding: 10 }}
             />
         </View>
     );
