@@ -11,12 +11,12 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     search: {
-        width: "90%",
+        width: "95%",
         paddingVertical: 2,
         paddingHorizontal: 8,
         fontSize: 15,
         borderColor: "#b30707",
-        borderWidth: 2.5,
+        borderWidth: 2,
         borderRadius: 5,
     }
 });

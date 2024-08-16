@@ -3,12 +3,16 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { Characters } from "@/screens/Characters";
 import { CharacterDetails } from "@/screens/CharacterDetails";
+import { CharacterComics } from "@/screens/CharacterComics";
 
 export type RootStackProps = {
   Characters: object | undefined;
   CharacterDetails: {
     character: Character;
   };
+  CharacterComics: {
+    character: Character;
+  },
 };
 
 export type NativeScreens = NativeStackNavigationProp<RootStackProps>;
@@ -26,6 +30,10 @@ export default function Routes() {
         <Stack.Screen
           name="CharacterDetails"
           component={CharacterDetails}
+        />
+        <Stack.Screen
+          name="CharacterComics"
+          component={CharacterComics}
         />
       </Stack.Navigator>
     </NavigationContainer>

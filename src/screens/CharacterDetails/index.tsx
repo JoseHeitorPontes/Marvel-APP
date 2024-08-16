@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { View, Text, Image, Button } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
+import { NativeScreens } from "@/routes/app.routes";
+
 import { Header } from "@/components/Header";
 
 import { styles } from "./styles";
@@ -11,7 +13,7 @@ type CharacterDetailsParams = {
 };
 
 export function CharacterDetails() {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NativeScreens>();
     const { params } = useRoute();
     const { character } = params as CharacterDetailsParams;
 
@@ -21,6 +23,8 @@ export function CharacterDetails() {
     function handleBack() {
         navigation.goBack();
     }
+
+    console.log(character);
 
     return (
         <View style={styles.container}>
@@ -34,10 +38,12 @@ export function CharacterDetails() {
 
                 <Text style={styles.title}>{character?.name}</Text>
 
-                <Text style={styles.description}>{character?.description}</Text>
+                <Text style={styles.description}>{character?.description || "No description."}</Text>
 
                 <View style={styles.buttonsContainer}>
-                    <Button title="COMICS" color="#f0141e" />
+                    <Button title="COMICS" color="#f0141e" onPress={() => navigation.navigate("CharacterComics", {
+                        character
+                    })} />
                     <Button title="EVENTS" color="#f0141e" />
                     <Button title="SERIES" color="#f0141e" />
                     <Button title="STORIES" color="#f0141e" />
