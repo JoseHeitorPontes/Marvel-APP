@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "700",
         color: "#fff",
+        textAlign: "justify",
         marginBottom: 10,
     },
     description: {

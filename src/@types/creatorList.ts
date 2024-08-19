@@ -1,0 +1,3 @@
+type CreatorList = {
+    items: Creator[];
+};

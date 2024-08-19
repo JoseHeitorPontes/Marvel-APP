@@ -46,7 +46,7 @@ export function CharacterComics() {
             <FlatList
                 keyExtractor={(_, index) => `comic-${index}`}
                 data={comicResponseData?.data?.results}
-                renderItem={({ item: comic }) => <ComicCard comic={comic} />}
+                renderItem={({ item: comic }) => <ComicCard comic={comic} onPress={() => navigation.navigate("ComicDetails", { comic })} />}
                 onEndReachedThreshold={0.1}
                 ListFooterComponent={<Loading />}
                 style={{ paddingHorizontal: 10 }}

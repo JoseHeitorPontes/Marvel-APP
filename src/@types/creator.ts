@@ -1,0 +1,3 @@
+type Creator = {
+    name: string;
+};

@@ -3,4 +3,5 @@ type Comic = {
     title: string;
     description: string;
     thumbnail: Thumbnail;
+    creators: CreatorList;
 };
