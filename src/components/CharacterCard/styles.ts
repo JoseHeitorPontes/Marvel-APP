@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     },
     image: {
         height: 90,
-        width: "55%",
+        width: 100,
         marginBottom: 10,
         borderRadius: 2,
         borderWidth: 2,

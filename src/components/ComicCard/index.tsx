@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button } from "react-native";
 import { styles } from "./styles";
 
 type Props = {
@@ -14,7 +14,7 @@ export function ComicCard({
         <View style={styles.container}>
             <Image style={styles.image} source={{ uri: comicImageUrl }} />
 
-            <View>
+            <View style={styles.contentContainer}>
                 <Text style={styles.title}>{comic.title}</Text>
                 <Text style={styles.description}>{comic.description}</Text>
             </View>

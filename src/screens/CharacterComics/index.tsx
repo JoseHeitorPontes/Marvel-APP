@@ -9,6 +9,7 @@ import { NativeScreens } from "@/routes/app.routes";
 import { Header } from "@/components/Header";
 import { ComicCard } from "@/components/ComicCard";
 import { Loading } from "@/components/Loading";
+import { styles } from "./styles";
 
 type CharacterComicsParams = {
     character: Character;
@@ -39,15 +40,17 @@ export function CharacterComics() {
     }, []);
 
     return (
-        <View>
+        <View style={styles.container}>
             <Header title={character.name} handleBack={handleBack} />
 
             <FlatList
                 keyExtractor={(_, index) => `comic-${index}`}
                 data={comicResponseData?.data?.results}
                 renderItem={({ item: comic }) => <ComicCard comic={comic} />}
+                onEndReachedThreshold={0.1}
                 ListFooterComponent={<Loading />}
-                style={{ padding: 10 }}
+                style={{ paddingHorizontal: 10 }}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     );
