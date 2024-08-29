@@ -1,7 +1,9 @@
-import { View, Text, Image, Pressable, PressableProps } from "react-native";
+import { View, Text, Image } from "react-native";
+import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+
 import { styles } from "./styles";
 
-type Props = PressableProps & {
+type Props = RectButtonProps & {
     comic: Comic;
 };
 
@@ -12,15 +14,13 @@ export function ComicCard({
     const comicImageUrl = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
 
     return (
-        <Pressable {...rest}>
-            <View style={styles.container}>
-                <Image style={styles.image} source={{ uri: comicImageUrl }} />
+        <RectButton style={styles.container} {...rest}>
+            <Image style={styles.image} source={{ uri: comicImageUrl }} />
 
-                <View style={styles.contentContainer}>
-                    <Text style={styles.title} numberOfLines={1}>{comic.title}</Text>
-                    <Text style={styles.description} numberOfLines={5}>{comic.description || "No description."}</Text>
-                </View>
+            <View style={styles.contentContainer}>
+                <Text style={styles.title} numberOfLines={1}>{comic.title}</Text>
+                <Text style={styles.description} numberOfLines={5}>{comic.description || "No description."}</Text>
             </View>
-        </Pressable>
+        </RectButton>
     );
 }

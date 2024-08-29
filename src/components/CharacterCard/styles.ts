@@ -24,5 +24,17 @@ export const styles = StyleSheet.create({
         borderRadius: 2,
         borderWidth: 2,
         borderColor: "#fff",
-    }
+    },
+    button: {
+        paddingVertical: 10,
+        paddingHorizontal: 25,
+        backgroundColor: "#f0141e",
+        borderRadius: 2.5,
+    },
+    buttonTitle: {
+        fontSize: 16,
+        fontWeight: "600",
+        textTransform: "none",
+        color: "#fff",
+    },
 });

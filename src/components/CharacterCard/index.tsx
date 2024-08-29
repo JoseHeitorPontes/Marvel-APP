@@ -1,4 +1,6 @@
-import { View, Image, Text, Button } from "react-native";
+import { View, Image, Text } from "react-native";
+import { RectButton } from "react-native-gesture-handler";
+
 import { styles } from "./styles";
 
 type Props = {
@@ -26,7 +28,7 @@ export function CharacterCard({
 
             <Text style={styles.title}>{character.name}</Text>
 
-            <Button title="DETAILS" color="#f0141e" onPress={onPressButton} />
+            <RectButton style={styles.button} onPress={onPressButton}><Text style={styles.buttonTitle}>Details</Text></RectButton>
         </View>
     );
 }
