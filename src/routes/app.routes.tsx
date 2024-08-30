@@ -1,4 +1,7 @@
-import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { Characters } from "@/screens/Characters";
@@ -13,10 +16,10 @@ export type RootStackProps = {
   };
   CharacterComics: {
     character: Character;
-  },
+  };
   ComicDetails: {
     comic: Comic;
-  },
+  };
 };
 
 export type NativeScreens = NativeStackNavigationProp<RootStackProps>;
@@ -27,22 +30,10 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen
-          name="Characters"
-          component={Characters}
-        />
-        <Stack.Screen
-          name="CharacterDetails"
-          component={CharacterDetails}
-        />
-        <Stack.Screen
-          name="CharacterComics"
-          component={CharacterComics}
-        />
-        <Stack.Screen
-          name="ComicDetails"
-          component={ComicDetails}
-        />
+        <Stack.Screen name="Characters" component={Characters} />
+        <Stack.Screen name="CharacterDetails" component={CharacterDetails} />
+        <Stack.Screen name="CharacterComics" component={CharacterComics} />
+        <Stack.Screen name="ComicDetails" component={ComicDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );

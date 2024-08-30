@@ -1,3 +1,3 @@
 type CreatorList = {
-    items: Creator[];
+  items: Creator[];
 };

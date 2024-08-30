@@ -1,3 +1,3 @@
 type Creator = {
-    name: string;
+  name: string;
 };

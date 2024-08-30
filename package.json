@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "format": "prettier . --write"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
@@ -14,9 +15,11 @@
     "@react-navigation/native-stack": "^6.9.26",
     "@types/md5": "^2.3.5",
     "axios": "^1.7.2",
+    "dayjs": "^1.11.13",
     "expo": "~51.0.14",
     "expo-status-bar": "~1.12.1",
     "md5": "^2.3.0",
+    "prettier": "^3.3.3",
     "react": "18.2.0",
     "react-native": "0.74.2",
     "react-native-gesture-handler": "^2.18.1",

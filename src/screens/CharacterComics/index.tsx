@@ -12,46 +12,55 @@ import { Loading } from "@/components/Loading";
 import { styles } from "./styles";
 
 type CharacterComicsParams = {
-    character: Character;
+  character: Character;
 };
 
 export function CharacterComics() {
-    const { params } = useRoute();
-    const { character } = params as CharacterComicsParams;
+  const { params } = useRoute();
+  const { character } = params as CharacterComicsParams;
 
-    const navigation = useNavigation<NativeScreens>();
+  const navigation = useNavigation<NativeScreens>();
 
-    const [comicResponseData, setComicResponseData] = useState({} as ComicResponseData);
+  const [comicResponseData, setComicResponseData] = useState(
+    {} as ComicResponseData,
+  );
 
-    const handleBack = () => navigation.goBack();
+  const handleBack = () => navigation.goBack();
 
-    async function fetchComics() {
-        try {
-            const { data } = await api.get<ComicResponseData>(`/characters/${character.id}/comics`);
+  async function fetchComics() {
+    try {
+      const { data } = await api.get<ComicResponseData>(
+        `/characters/${character.id}/comics`,
+      );
 
-            setComicResponseData(data);
-        } catch(error) {
-            console.log(error);
-        }
+      setComicResponseData(data);
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    useEffect(() => {
-        fetchComics();
-    }, []);
+  useEffect(() => {
+    fetchComics();
+  }, []);
 
-    return (
-        <View style={styles.container}>
-            <Header title={character.name} handleBack={handleBack} />
+  return (
+    <View style={styles.container}>
+      <Header title={character.name} handleBack={handleBack} />
 
-            <FlatList
-                keyExtractor={(_, index) => `comic-${index}`}
-                data={comicResponseData?.data?.results}
-                renderItem={({ item: comic }) => <ComicCard comic={comic} onPress={() => navigation.navigate("ComicDetails", { comic })} />}
-                onEndReachedThreshold={0.1}
-                ListFooterComponent={<Loading />}
-                style={{ paddingHorizontal: 10 }}
-                showsVerticalScrollIndicator={false}
-            />
-        </View>
-    );
+      <FlatList
+        keyExtractor={(_, index) => `comic-${index}`}
+        data={comicResponseData?.data?.results}
+        renderItem={({ item: comic }) => (
+          <ComicCard
+            comic={comic}
+            onPress={() => navigation.navigate("ComicDetails", { comic })}
+          />
+        )}
+        onEndReachedThreshold={0.1}
+        ListFooterComponent={<Loading />}
+        style={{ paddingHorizontal: 10 }}
+        showsVerticalScrollIndicator={false}
+      />
+    </View>
+  );
 }
