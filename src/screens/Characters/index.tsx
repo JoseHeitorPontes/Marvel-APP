@@ -100,7 +100,6 @@ export function Characters() {
       ) : (
         <FlatList
           numColumns={2}
-          style={{ marginTop: 15 }}
           keyExtractor={(_, index) => `character-${index}`}
           data={characterResponseData?.data?.results}
           renderItem={({ item: character }) => (
@@ -119,7 +118,7 @@ export function Characters() {
           refreshControl={
             <RefreshControl
               refreshing={loading}
-              colors={[theme.colors.secondary]}
+              colors={[theme.colors.primary]}
               progressBackgroundColor={theme.colors.light}
               onRefresh={() => fetchCharacters(true)}
             />

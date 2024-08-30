@@ -5,4 +5,5 @@ type Comic = {
   thumbnail: Thumbnail;
   creators: CreatorList;
   modified: string;
+  images: Thumbnail[];
 };

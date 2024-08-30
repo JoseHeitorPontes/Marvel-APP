@@ -1,13 +1,15 @@
 import { View, Text, Image } from "react-native";
 
-import dayjs from "dayjs";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import dayjs from "dayjs";
 
 import { NativeScreens } from "@/routes/app.routes";
 
 import { Header } from "@/components/Header";
+import { ComicImageCarousel } from "@/components/ComicImageCarousel";
 
 import { styles } from "./styles";
+import { useRef } from "react";
 
 type ComicDetailsParams = {
   comic: Comic;
@@ -23,6 +25,8 @@ export function ComicDetails() {
   function handleBack() {
     navigation.goBack();
   }
+
+  const ref = useRef(null);
 
   return (
     <View>
@@ -41,6 +45,10 @@ export function ComicDetails() {
           <Text style={styles.modifiedDateLabel}>Date of last change:</Text>{" "}
           {dayjs(comic.modified).format("MMMM D, YYYY")}
         </Text>
+
+        <Text style={styles.title}>Images</Text>
+
+        <ComicImageCarousel images={comic.images} />
       </View>
     </View>
   );

@@ -15,10 +15,10 @@ export function Header({ showLogo, title, handleBack }: Props) {
     <View style={styles.container}>
       {showLogo ? (
         <View style={styles.logoContainer}>
-          <Image
+          {/* <Image
             style={styles.image}
-            source={require("../../../assets/images/marvel.png")}
-          />
+            source={require("@/assets/images/marvel.png")}
+          /> */}
         </View>
       ) : (
         <>

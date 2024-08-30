@@ -10,5 +10,6 @@ export const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     paddingHorizontal: 12.5,
+    marginBottom: 25,
   },
 });
