@@ -8,7 +8,11 @@ type Props = ActivityIndicatorProps;
 export function Loading({ ...rest }: Props) {
   return (
     <View style={styles.container}>
-      <ActivityIndicator color={theme.colors.primary} size={rest.size || 30} {...rest} />
+      <ActivityIndicator
+        color={theme.colors.primary}
+        size={rest.size || 30}
+        {...rest}
+      />
     </View>
   );
 }

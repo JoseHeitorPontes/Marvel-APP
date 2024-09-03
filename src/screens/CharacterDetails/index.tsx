@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { NativeScreens } from "@/routes/app.routes";
@@ -31,44 +30,46 @@ export function CharacterDetails() {
     <View style={styles.container}>
       <Header title={character.name} handleBack={handleBack} />
 
-      <View style={styles.detailsContainer}>
-        <Image
-          style={styles.image}
-          {...(hasImageNotFound
-            ? { source: require("@/img/image-not-found.png") }
-            : { source: { uri: characterImageUrl } })}
-        />
-
-        <Text style={styles.title}>{character?.name}</Text>
-
-        <Text style={styles.description}>
-          {character?.description || "No description."}
-        </Text>
-
-        <View style={styles.buttonsContainer}>
-          <Button
-            title="Comics"
-            onPress={() =>
-              navigation.navigate("CharacterComics", {
-                character,
-              })
-            }
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.detailsContainer}>
+          <Image
+            style={styles.image}
+            {...(hasImageNotFound
+              ? { source: require("@/img/image-not-found.png") }
+              : { source: { uri: characterImageUrl } })}
           />
 
-          <Button title="Events" />
+          <Text style={styles.title}>{character?.name}</Text>
 
-          <Button title="Series" />
+          <Text style={styles.description}>
+            {character?.description || "No description."}
+          </Text>
 
-          <Button
-            title="Stories"
-            onPress={() =>
-              navigation.navigate("CharacterComics", {
-                character,
-              })
-            }
-          />
+          <View style={styles.buttonsContainer}>
+            <Button
+              title="Comics"
+              onPress={() =>
+                navigation.navigate("CharacterComics", {
+                  character,
+                })
+              }
+            />
+
+            <Button title="Events" />
+
+            <Button title="Series" />
+
+            <Button
+              title="Stories"
+              onPress={() =>
+                navigation.navigate("CharacterComics", {
+                  character,
+                })
+              }
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }

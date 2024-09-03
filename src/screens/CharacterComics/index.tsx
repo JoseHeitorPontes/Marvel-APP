@@ -58,7 +58,7 @@ export function CharacterComics() {
         )}
         onEndReachedThreshold={0.1}
         ListFooterComponent={<Loading />}
-        style={{ paddingHorizontal: 10 }}
+        style={{ padding: 20 }}
         showsVerticalScrollIndicator={false}
       />
     </View>

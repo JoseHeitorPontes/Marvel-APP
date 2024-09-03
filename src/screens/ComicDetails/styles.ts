@@ -1,16 +1,22 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollView: {
+    padding: 20,
+  },
   detailsContainer: {
-    paddingHorizontal: 20,
     flexDirection: "column",
+    alignItems: "center",
     gap: 15,
   },
-  imageContainer: {
+  thumbnailContainer: {
     display: "flex",
     alignItems: "center",
   },
-  image: {
+  thumbnail: {
     height: 400,
     width: 250,
   },
@@ -30,5 +36,15 @@ export const styles = StyleSheet.create({
   modifiedDateLabel: {
     color: "#000",
     fontWeight: "700",
+  },
+  comicImageContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    gap: 15,
+  },
+  comicImage: {
+    height: 300,
+    width: 195,
   },
 });

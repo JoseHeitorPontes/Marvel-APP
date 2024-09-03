@@ -38,6 +38,8 @@ export function Characters() {
         },
       });
 
+      console.log(response);
+
       if (isFirstPage) {
         offset.current = 0 + 20;
 
@@ -91,40 +93,42 @@ export function Characters() {
     <View style={styles.container}>
       <Header showLogo />
 
-      <View style={styles.containerSearch}>
-        <Search placeholder="Search character" />
-      </View>
+      <View style={styles.content}>
+        <View style={styles.containerSearch}>
+          <Search placeholder="Search character" />
+        </View>
 
-      {loading ? (
-        <Loading />
-      ) : (
-        <FlatList
-          numColumns={2}
-          keyExtractor={(_, index) => `character-${index}`}
-          data={characterResponseData?.data?.results}
-          renderItem={({ item: character }) => (
-            <CharacterCard
-              character={character}
-              onPressButton={() =>
-                navigation.navigate("CharacterDetails", { character })
-              }
-            />
-          )}
-          onEndReached={() => fetchCharacters()}
-          onEndReachedThreshold={0.1}
-          ListFooterComponent={<LoadingContainer />}
-          showsVerticalScrollIndicator={false}
-          columnWrapperStyle={{ justifyContent: "space-around" }}
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              colors={[theme.colors.primary]}
-              progressBackgroundColor={theme.colors.light}
-              onRefresh={() => fetchCharacters(true)}
-            />
-          }
-        />
-      )}
+        {loading ? (
+          <Loading />
+        ) : (
+          <FlatList
+            numColumns={2}
+            keyExtractor={(_, index) => `character-${index}`}
+            data={characterResponseData?.data?.results}
+            renderItem={({ item: character }) => (
+              <CharacterCard
+                character={character}
+                onPressButton={() =>
+                  navigation.navigate("CharacterDetails", { character })
+                }
+              />
+            )}
+            onEndReached={() => fetchCharacters()}
+            onEndReachedThreshold={0.1}
+            ListFooterComponent={<LoadingContainer />}
+            showsVerticalScrollIndicator={false}
+            columnWrapperStyle={{ justifyContent: "space-between" }}
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                colors={[theme.colors.primary]}
+                progressBackgroundColor={theme.colors.light}
+                onRefresh={() => fetchCharacters(true)}
+              />
+            }
+          />
+        )}
+      </View>
     </View>
   );
 }

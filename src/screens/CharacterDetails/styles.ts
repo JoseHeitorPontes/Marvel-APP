@@ -2,14 +2,16 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    paddingVertical: 15,
-    height: "100%",
+    flex: 1,
   },
   loadingContainer: {
     height: "100%",
     flexDirection: "column",
     alignContent: "center",
     justifyContent: "center",
+  },
+  scrollView: {
+    padding: 20,
   },
   detailsContainer: {
     flexDirection: "column",
@@ -26,13 +28,11 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
   },
   description: {
-    paddingHorizontal: 20,
     fontSize: 15,
     textAlign: "justify",
   },
   buttonsContainer: {
     width: "100%",
-    paddingHorizontal: 15,
     flexDirection: "column",
     gap: 15,
   },

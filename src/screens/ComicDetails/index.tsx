@@ -1,4 +1,5 @@
-import { View, Text, Image } from "react-native";
+import { useEffect, useRef } from "react";
+import { View, ScrollView, Text, Image } from "react-native";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import dayjs from "dayjs";
@@ -6,10 +7,8 @@ import dayjs from "dayjs";
 import { NativeScreens } from "@/routes/app.routes";
 
 import { Header } from "@/components/Header";
-import { ComicImageCarousel } from "@/components/ComicImageCarousel";
 
 import { styles } from "./styles";
-import { useRef } from "react";
 
 type ComicDetailsParams = {
   comic: Comic;
@@ -26,30 +25,40 @@ export function ComicDetails() {
     navigation.goBack();
   }
 
-  const ref = useRef(null);
+  comic.images.map((image) => console.log(image));
 
   return (
-    <View>
+    <View style={styles.container}>
       <Header title={comic.title} handleBack={handleBack} />
 
-      <View style={styles.detailsContainer}>
-        <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri: comicImageUrl }} />
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.detailsContainer}>
+          <View style={styles.thumbnailContainer}>
+            <Image style={styles.thumbnail} source={{ uri: comicImageUrl }} />
+          </View>
+
+          <Text style={styles.title}>{comic.title}</Text>
+
+          <Text style={styles.description}>{comic.description}</Text>
+
+          <Text style={styles.modifiedDate}>
+            <Text style={styles.modifiedDateLabel}>Date of last change:</Text>{" "}
+            {dayjs(comic.modified).format("MMMM D, YYYY")}
+          </Text>
+
+          <Text style={styles.title}>Images</Text>
+
+          <View style={styles.comicImageContainer}>
+            {comic.images.map((comicImage, index) => (
+              <Image
+                key={`comic-image-${index}`}
+                style={styles.comicImage}
+                source={{ uri: `${comicImage.path}.${comicImage.extension}` }}
+              />
+            ))}
+          </View>
         </View>
-
-        <Text style={styles.title}>{comic.title}</Text>
-
-        <Text style={styles.description}>{comic.description}</Text>
-
-        <Text style={styles.modifiedDate}>
-          <Text style={styles.modifiedDateLabel}>Date of last change:</Text>{" "}
-          {dayjs(comic.modified).format("MMMM D, YYYY")}
-        </Text>
-
-        <Text style={styles.title}>Images</Text>
-
-        <ComicImageCarousel images={comic.images} />
-      </View>
+      </ScrollView>
     </View>
   );
 }
