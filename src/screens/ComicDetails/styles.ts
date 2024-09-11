@@ -37,11 +37,15 @@ export const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "700",
   },
+  datesContainer: {
+    width: "100%",
+  },
   comicImageContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
     gap: 15,
+    marginBottom: 40,
   },
   comicImage: {
     height: 300,
