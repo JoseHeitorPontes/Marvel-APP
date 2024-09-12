@@ -8,11 +8,17 @@ type Props = RectButtonProps & {
 };
 
 export function ComicCard({ comic, ...rest }: Props) {
+  const hasImageNotFound = comic.thumbnail.path.includes("image_not_available");
   const comicImageUrl = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
 
   return (
     <RectButton style={styles.container} {...rest}>
-      <Image style={styles.image} source={{ uri: comicImageUrl }} />
+      <Image
+        style={styles.image}
+        {...(hasImageNotFound
+          ? { source: require("@/img/image-not-found.png") }
+          : { source: { uri: comicImageUrl } })}
+      />
 
       <View style={styles.contentContainer}>
         <Text style={styles.title} numberOfLines={1}>

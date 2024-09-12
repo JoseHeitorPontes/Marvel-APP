@@ -15,7 +15,6 @@ import { ComicDetails } from "@/screens/ComicDetails";
 import { Comics } from "@/screens/Comics";
 import { Series } from "@/screens/Series";
 
-
 export type RootStackProps = {
   Tabs: {
     screen: keyof RootTabProps;

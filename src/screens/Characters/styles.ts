@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
   },
   content: {
     padding: 20,
+    paddingTop: 0,
   },
   containerSearch: {
     width: "100%",

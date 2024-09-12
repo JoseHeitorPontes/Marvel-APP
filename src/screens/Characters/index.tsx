@@ -19,7 +19,7 @@ export function Characters() {
 
   const isFirstRender = useRef(true);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const offset = useRef<number>(0);
 
@@ -37,8 +37,6 @@ export function Characters() {
           ...(nameCharacter && { name: nameCharacter }),
         },
       });
-
-      console.log(response);
 
       if (isFirstPage) {
         offset.current = 0 + 20;
@@ -79,16 +77,6 @@ export function Characters() {
     return <Loading />;
   }
 
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-
-      return;
-    }
-
-    fetchCharacters(true, debouncedSearch);
-  }, [debouncedSearch]);
-
   return (
     <View style={styles.container}>
       <Header showLogo />
@@ -98,36 +86,32 @@ export function Characters() {
           <Search placeholder="Search character" />
         </View>
 
-        {loading ? (
-          <Loading />
-        ) : (
-          <FlatList
-            numColumns={2}
-            keyExtractor={(_, index) => `character-${index}`}
-            data={characterResponseData?.data?.results}
-            renderItem={({ item: character }) => (
-              <CharacterCard
-                character={character}
-                onPressButton={() =>
-                  navigation.navigate("CharacterDetails", { character })
-                }
-              />
-            )}
-            onEndReached={() => fetchCharacters()}
-            onEndReachedThreshold={0.1}
-            ListFooterComponent={<LoadingContainer />}
-            showsVerticalScrollIndicator={false}
-            columnWrapperStyle={{ justifyContent: "space-between" }}
-            refreshControl={
-              <RefreshControl
-                refreshing={loading}
-                colors={[theme.colors.secondary]}
-                progressBackgroundColor={theme.colors.light}
-                onRefresh={() => fetchCharacters(true)}
-              />
-            }
-          />
-        )}
+        <FlatList
+          numColumns={2}
+          keyExtractor={(_, index) => `character-${index}`}
+          data={characterResponseData?.data?.results}
+          renderItem={({ item: character }) => (
+            <CharacterCard
+              character={character}
+              onPressButton={() =>
+                navigation.navigate("CharacterDetails", { character })
+              }
+            />
+          )}
+          onEndReached={() => fetchCharacters()}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={<LoadingContainer />}
+          showsVerticalScrollIndicator={false}
+          columnWrapperStyle={{ justifyContent: "space-between" }}
+          refreshControl={
+            <RefreshControl
+              refreshing={loading}
+              colors={[theme.colors.secondary]}
+              progressBackgroundColor={theme.colors.light}
+              onRefresh={() => fetchCharacters()}
+            />
+          }
+        />
       </View>
     </View>
   );
