@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
   },
   description: {
     fontSize: 15,
+    fontWeight: "600",
     textAlign: "justify",
   },
   buttonsContainer: {

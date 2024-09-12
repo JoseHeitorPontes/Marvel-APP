@@ -43,7 +43,9 @@ export function ComicDetails() {
 
           <Text style={styles.title}>{comic.title}</Text>
 
-          <Text style={styles.description}>{comic.description}</Text>
+          <Text style={styles.description}>
+            {comic.description || "No description"}
+          </Text>
 
           <View style={styles.datesContainer}>
             <Text style={styles.modifiedDate}>
@@ -55,21 +57,25 @@ export function ComicDetails() {
           <Text style={styles.title}>Images</Text>
 
           <View style={styles.comicImageContainer}>
-            {filteredImages.map((image, index) => {
-              const imageIndex = index++;
-
-              if (imageIndex < 4) {
-                return (
-                  <Image
-                    key={`comic-image-${imageIndex}`}
-                    style={styles.comicImage}
-                    source={{ uri: `${image.path}.${image.extension}` }}
-                  />
-                );
-              }
-
-              return null;
-            })}
+            {Boolean(filteredImages.length) ? (
+              filteredImages.map((image, index) => {
+                const imageIndex = index++;
+  
+                if (imageIndex < 4) {
+                  return (
+                    <Image
+                      key={`comic-image-${imageIndex}`}
+                      style={styles.comicImage}
+                      source={{ uri: `${image.path}.${image.extension}` }}
+                    />
+                  );
+                }
+  
+                return null;
+              })
+            ) : (
+              <Text style={styles.messageHasNoImages}>No images</Text>
+            )}
           </View>
         </View>
       </ScrollView>

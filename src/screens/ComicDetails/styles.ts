@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
 
+import { theme } from "@/styles/theme";
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -26,15 +28,18 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   description: {
+    width: "100%",
     fontSize: 15,
+    fontWeight: "600",
     textAlign: "justify",
+    color: theme.colors.dark,
   },
   modifiedDate: {
     color: "gray",
     fontSize: 15,
   },
   modifiedDateLabel: {
-    color: "#000",
+    color: theme.colors.dark,
     fontWeight: "700",
   },
   datesContainer: {
@@ -50,5 +55,10 @@ export const styles = StyleSheet.create({
   comicImage: {
     height: 300,
     width: 195,
+  },
+  messageHasNoImages: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: theme.colors.dark,
   },
 });

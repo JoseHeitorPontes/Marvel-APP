@@ -13,6 +13,6 @@ export const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     alignItems: "center",
-    marginBottom: 25,
+    marginBottom: 20,
   },
 });
