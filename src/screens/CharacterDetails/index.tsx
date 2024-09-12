@@ -55,18 +55,7 @@ export function CharacterDetails() {
               }
             />
 
-            <Button title="Events" />
-
             <Button title="Series" />
-
-            <Button
-              title="Stories"
-              onPress={() =>
-                navigation.navigate("CharacterComics", {
-                  character,
-                })
-              }
-            />
           </View>
         </View>
       </ScrollView>

@@ -121,7 +121,7 @@ export function Characters() {
             refreshControl={
               <RefreshControl
                 refreshing={loading}
-                colors={[theme.colors.primary]}
+                colors={[theme.colors.secondary]}
                 progressBackgroundColor={theme.colors.light}
                 onRefresh={() => fetchCharacters(true)}
               />

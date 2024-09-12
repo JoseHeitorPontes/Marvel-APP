@@ -1,4 +1,6 @@
-import { View, Pressable, Text, Image } from "react-native";
+import { View, Text, Image } from "react-native";
+
+import { BorderlessButton } from "react-native-gesture-handler";
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -23,9 +25,9 @@ export function Header({ showLogo, title, handleBack }: Props) {
       ) : (
         <>
           {handleBack && (
-            <Pressable onPress={handleBack}>
+            <BorderlessButton onPress={handleBack}>
               <Ionicons name="chevron-back" size={32} color="#b30707" />
-            </Pressable>
+            </BorderlessButton>
           )}
 
           {title && <Text style={styles.title}>{title}</Text>}

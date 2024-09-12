@@ -9,7 +9,7 @@ export function Loading({ ...rest }: Props) {
   return (
     <View style={styles.container}>
       <ActivityIndicator
-        color={theme.colors.primary}
+        color={theme.colors.secondary}
         size={rest.size || 30}
         {...rest}
       />

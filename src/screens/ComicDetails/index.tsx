@@ -55,13 +55,21 @@ export function ComicDetails() {
           <Text style={styles.title}>Images</Text>
 
           <View style={styles.comicImageContainer}>
-            {filteredImages.map((image, index) => (
-              <Image
-                key={`comic-image-${index}`}
-                style={styles.comicImage}
-                source={{ uri: `${image.path}.${image.extension}` }}
-              />
-            ))}
+            {filteredImages.map((image, index) => {
+              const imageIndex = index++;
+
+              if (imageIndex < 4) {
+                return (
+                  <Image
+                    key={`comic-image-${imageIndex}`}
+                    style={styles.comicImage}
+                    source={{ uri: `${image.path}.${image.extension}` }}
+                  />
+                );
+              }
+
+              return null;
+            })}
           </View>
         </View>
       </ScrollView>
