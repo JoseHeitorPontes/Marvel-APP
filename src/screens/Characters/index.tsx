@@ -68,13 +68,13 @@ export function Characters() {
     const totalCharacters = characterResponseData?.data?.total;
     const currentTotalCharacters = characterResponseData?.data?.results?.length;
 
-    const hasMoreCharacters = currentTotalCharacters > totalCharacters;
+    const hasMoreCharacters = totalCharacters > currentTotalCharacters;
 
     if (hasMoreCharacters) {
-      return null;
+      return <Loading />;
     }
 
-    return <Loading />;
+    return null;
   }
 
   return (
@@ -90,6 +90,8 @@ export function Characters() {
           numColumns={2}
           keyExtractor={(_, index) => `character-${index}`}
           data={characterResponseData?.data?.results}
+          showsVerticalScrollIndicator={false}
+          columnWrapperStyle={{ justifyContent: "space-between" }}
           renderItem={({ item: character }) => (
             <CharacterCard
               character={character}
@@ -101,8 +103,6 @@ export function Characters() {
           onEndReached={() => fetchCharacters()}
           onEndReachedThreshold={0.1}
           ListFooterComponent={<LoadingContainer />}
-          showsVerticalScrollIndicator={false}
-          columnWrapperStyle={{ justifyContent: "space-between" }}
           refreshControl={
             <RefreshControl
               refreshing={loading}

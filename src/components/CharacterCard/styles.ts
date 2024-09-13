@@ -2,13 +2,13 @@ import { StyleSheet } from "react-native";
 import { theme } from "@/styles/theme";
 
 export const styles = StyleSheet.create({
-  container: {
+  card: {
     height: 225,
     width: "45%",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 15,
+    marginBottom: 10,
     backgroundColor: theme.colors.dark,
     borderTopStartRadius: 20,
     borderBottomEndRadius: 20,
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     width: 90,
     marginBottom: 10,
     borderRadius: 2,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: theme.colors.light,
   },
 });

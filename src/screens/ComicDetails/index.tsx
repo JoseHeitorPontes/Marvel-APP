@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { View, ScrollView, Text, Image } from "react-native";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -7,6 +6,7 @@ import dayjs from "dayjs";
 import { NativeScreens } from "@/routes/app.routes";
 
 import { Header } from "@/components/Header";
+import { Carousel } from "@/components/Carousel";
 
 import { styles } from "./styles";
 
@@ -44,7 +44,7 @@ export function ComicDetails() {
           <Text style={styles.title}>{comic.title}</Text>
 
           <Text style={styles.description}>
-            {comic.description || "No description"}
+            {comic.description || "No description."}
           </Text>
 
           <View style={styles.datesContainer}>
@@ -56,11 +56,11 @@ export function ComicDetails() {
 
           <Text style={styles.title}>Images</Text>
 
-          <View style={styles.comicImageContainer}>
+          {/* <View style={styles.comicImageContainer}>
             {Boolean(filteredImages.length) ? (
               filteredImages.map((image, index) => {
                 const imageIndex = index++;
-  
+
                 if (imageIndex < 4) {
                   return (
                     <Image
@@ -70,13 +70,15 @@ export function ComicDetails() {
                     />
                   );
                 }
-  
+
                 return null;
               })
+            </View>
             ) : (
               <Text style={styles.messageHasNoImages}>No images</Text>
-            )}
-          </View>
+            )} */}
+
+            <Carousel />
         </View>
       </ScrollView>
     </View>

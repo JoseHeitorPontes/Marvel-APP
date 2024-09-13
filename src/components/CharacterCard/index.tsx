@@ -23,7 +23,7 @@ export function CharacterCard({ character, onPressButton }: Props) {
   const characterImageUrl = `${character.thumbnail.path}.${character.thumbnail.extension}`;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.card}>
       <Image
         style={styles.image}
         {...(hasImageNotFound

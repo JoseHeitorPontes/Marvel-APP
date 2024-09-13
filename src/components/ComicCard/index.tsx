@@ -12,7 +12,7 @@ export function ComicCard({ comic, ...rest }: Props) {
   const comicImageUrl = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
 
   return (
-    <RectButton style={styles.container} {...rest}>
+    <RectButton style={styles.card} {...rest}>
       <Image
         style={styles.image}
         {...(hasImageNotFound
@@ -20,11 +20,12 @@ export function ComicCard({ comic, ...rest }: Props) {
           : { source: { uri: comicImageUrl } })}
       />
 
-      <View style={styles.contentContainer}>
+      <View style={styles.cardBody}>
         <Text style={styles.title} numberOfLines={1}>
           {comic.title}
         </Text>
-        <Text style={styles.description} numberOfLines={5}>
+
+        <Text style={styles.description} numberOfLines={7}>
           {comic.description || "No description."}
         </Text>
       </View>

@@ -47,20 +47,21 @@ export function CharacterComics() {
     <View style={styles.container}>
       <Header title={character.name} handleBack={handleBack} />
 
-      <FlatList
-        keyExtractor={(_, index) => `comic-${index}`}
-        data={comicResponseData?.data?.results}
-        renderItem={({ item: comic }) => (
-          <ComicCard
-            comic={comic}
-            onPress={() => navigation.navigate("ComicDetails", { comic })}
-          />
-        )}
-        onEndReachedThreshold={0.1}
-        ListFooterComponent={<Loading />}
-        style={{ padding: 20 }}
-        showsVerticalScrollIndicator={false}
-      />
+      <View style={styles.content}>
+        <FlatList
+          keyExtractor={(_, index) => `comic-${index}`}
+          data={comicResponseData?.data?.results}
+          renderItem={({ item: comic }) => (
+            <ComicCard
+              comic={comic}
+              onPress={() => navigation.navigate("ComicDetails", { comic })}
+            />
+          )}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={<Loading />}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </View>
   );
 }

@@ -1,0 +1,1 @@
+type SerieResponseData = ResponseData<Serie>;

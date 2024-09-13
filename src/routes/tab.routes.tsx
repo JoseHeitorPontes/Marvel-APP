@@ -68,7 +68,7 @@ export function TabRoutes() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               iconLibrary="MaterialCommunityIcons"
-              iconName="movie-open"
+              iconName="bookshelf"
               focused={focused}
             />
           ),

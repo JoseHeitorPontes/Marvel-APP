@@ -46,15 +46,13 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   comicImageContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    justifyContent: "center",
     gap: 15,
     marginBottom: 40,
   },
   comicImage: {
-    height: 300,
-    width: 195,
+    height: 400,
+    width: 250,
   },
   messageHasNoImages: {
     fontSize: 15,

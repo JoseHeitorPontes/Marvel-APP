@@ -3,11 +3,10 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     height: "100%",
-    paddingTop: 15,
   },
   content: {
-    padding: 20,
-    paddingTop: 0,
+    paddingHorizontal: 20,
+    paddingBottom: 200,
   },
   containerSearch: {
     width: "100%",

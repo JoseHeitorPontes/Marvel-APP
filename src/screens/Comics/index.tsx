@@ -11,6 +11,7 @@ import { Search } from "@/components/Search";
 import { ComicCard } from "@/components/ComicCard";
 
 import { styles } from "./styles";
+import { Loading } from "@/components/Loading";
 
 export function Comics() {
   const [comicResponseData, setComicResponseData] = useState(
@@ -33,6 +34,19 @@ export function Comics() {
     navigation.goBack();
   }
 
+  function LoadingContainer() {
+    const totalSeries = comicResponseData?.data?.total;
+    const currentTotalSeries = comicResponseData?.data?.results?.length;
+
+    const hasMoreSeries = totalSeries > currentTotalSeries;
+
+    if (hasMoreSeries) {
+      return <Loading />;
+    }
+
+    return null;
+  }
+
   useEffect(() => {
     fetchComics();
   }, []);
@@ -49,6 +63,7 @@ export function Comics() {
         <FlatList
           keyExtractor={(_, index) => `comic-${index}`}
           data={comicResponseData?.data?.results}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item: comic }) => (
             <ComicCard
               comic={comic}
@@ -57,6 +72,7 @@ export function Comics() {
           )}
           onEndReached={() => fetchComics()}
           onEndReachedThreshold={0.1}
+          ListFooterComponent={<LoadingContainer />}
         />
       </View>
     </View>
