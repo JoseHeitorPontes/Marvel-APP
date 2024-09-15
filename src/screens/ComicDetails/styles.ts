@@ -6,13 +6,11 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollView: {
-    padding: 20,
-  },
   detailsContainer: {
     flexDirection: "column",
     alignItems: "center",
     gap: 15,
+    paddingBottom: 20,
   },
   thumbnailContainer: {
     display: "flex",
@@ -26,6 +24,10 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     textAlign: "center",
+  },
+  detailsContent: {
+    paddingHorizontal: 20,
+    gap: 15,
   },
   description: {
     width: "100%",
@@ -49,14 +51,5 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 15,
     marginBottom: 40,
-  },
-  comicImage: {
-    height: 400,
-    width: 250,
-  },
-  messageHasNoImages: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: theme.colors.dark,
   },
 });

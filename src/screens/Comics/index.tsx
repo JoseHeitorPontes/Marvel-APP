@@ -18,6 +18,8 @@ export function Comics() {
     {} as ComicResponseData,
   );
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const navigation = useNavigation<NativeScreens>();
 
   async function fetchComics() {
@@ -27,6 +29,8 @@ export function Comics() {
       setComicResponseData(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -39,6 +43,10 @@ export function Comics() {
     const currentTotalSeries = comicResponseData?.data?.results?.length;
 
     const hasMoreSeries = totalSeries > currentTotalSeries;
+
+    if (isLoading) {
+      return <Loading />;
+    }
 
     if (hasMoreSeries) {
       return <Loading />;

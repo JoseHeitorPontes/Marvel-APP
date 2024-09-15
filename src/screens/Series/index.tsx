@@ -19,6 +19,8 @@ export function Series() {
     {} as SerieResponseData,
   );
 
+  const [isLoading, setIsLoading] = useState(true);
+
   async function fetchSeries() {
     try {
       const { data } = await api.get("/series");
@@ -26,6 +28,8 @@ export function Series() {
       setSerieResponseData(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -38,6 +42,10 @@ export function Series() {
     const currentTotalSeries = serieResponseData?.data?.results?.length;
 
     const hasMoreSeries = totalSeries > currentTotalSeries;
+
+    if (isLoading) {
+      return <Loading />;
+    }
 
     if (hasMoreSeries) {
       return <Loading />;

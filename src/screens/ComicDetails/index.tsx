@@ -6,9 +6,9 @@ import dayjs from "dayjs";
 import { NativeScreens } from "@/routes/app.routes";
 
 import { Header } from "@/components/Header";
-import { Carousel } from "@/components/Carousel";
 
 import { styles } from "./styles";
+import { Carousel } from "@/components/Carousel";
 
 type ComicDetailsParams = {
   comic: Comic;
@@ -20,9 +20,9 @@ export function ComicDetails() {
   const { comic } = params as ComicDetailsParams;
 
   const thumbnailUrl = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
-  const filteredImages = comic.images.filter(
-    (image) => image.path !== comic.thumbnail.path,
-  );
+  const filteredImages = comic.images
+    .filter((image) => image.path !== comic.thumbnail.path)
+    .slice(0, 4);
 
   function handleBack() {
     navigation.goBack();
@@ -32,53 +32,32 @@ export function ComicDetails() {
     <View style={styles.container}>
       <Header title={comic.title} handleBack={handleBack} />
 
-      <ScrollView
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.detailsContainer}>
-          <View style={styles.thumbnailContainer}>
-            <Image style={styles.thumbnail} source={{ uri: thumbnailUrl }} />
-          </View>
+          <View style={styles.detailsContent}>
+            <View style={styles.thumbnailContainer}>
+              <Image style={styles.thumbnail} source={{ uri: thumbnailUrl }} />
+            </View>
 
-          <Text style={styles.title}>{comic.title}</Text>
+            <Text style={styles.title}>{comic.title}</Text>
 
-          <Text style={styles.description}>
-            {comic.description || "No description."}
-          </Text>
-
-          <View style={styles.datesContainer}>
-            <Text style={styles.modifiedDate}>
-              <Text style={styles.modifiedDateLabel}>Date of last change:</Text>{" "}
-              {dayjs(comic.modified).format("MMMM D, YYYY")}
+            <Text style={styles.description}>
+              {comic.description || "No description."}
             </Text>
+
+            <View style={styles.datesContainer}>
+              <Text style={styles.modifiedDate}>
+                <Text style={styles.modifiedDateLabel}>
+                  Date of last change:
+                </Text>{" "}
+                {dayjs(comic.modified).format("MMMM D, YYYY")}
+              </Text>
+            </View>
           </View>
 
           <Text style={styles.title}>Images</Text>
 
-          {/* <View style={styles.comicImageContainer}>
-            {Boolean(filteredImages.length) ? (
-              filteredImages.map((image, index) => {
-                const imageIndex = index++;
-
-                if (imageIndex < 4) {
-                  return (
-                    <Image
-                      key={`comic-image-${imageIndex}`}
-                      style={styles.comicImage}
-                      source={{ uri: `${image.path}.${image.extension}` }}
-                    />
-                  );
-                }
-
-                return null;
-              })
-            </View>
-            ) : (
-              <Text style={styles.messageHasNoImages}>No images</Text>
-            )} */}
-
-            <Carousel />
+          <Carousel images={filteredImages} />
         </View>
       </ScrollView>
     </View>

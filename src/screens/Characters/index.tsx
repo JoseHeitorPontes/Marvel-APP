@@ -19,7 +19,8 @@ export function Characters() {
 
   const isFirstRender = useRef(true);
 
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingRefreshControl, setIsLoadingRefreshControl] = useState(false);
 
   const offset = useRef<number>(0);
 
@@ -60,7 +61,8 @@ export function Characters() {
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
+      setIsLoadingRefreshControl(false);
     }
   }
 
@@ -69,6 +71,10 @@ export function Characters() {
     const currentTotalCharacters = characterResponseData?.data?.results?.length;
 
     const hasMoreCharacters = totalCharacters > currentTotalCharacters;
+
+    if (isLoading) {
+      return <Loading />;
+    }
 
     if (hasMoreCharacters) {
       return <Loading />;
@@ -105,10 +111,10 @@ export function Characters() {
           ListFooterComponent={<LoadingContainer />}
           refreshControl={
             <RefreshControl
-              refreshing={loading}
+              refreshing={isLoadingRefreshControl}
               colors={[theme.colors.secondary]}
               progressBackgroundColor={theme.colors.light}
-              onRefresh={() => fetchCharacters()}
+              onRefresh={() => fetchCharacters(true)}
             />
           }
         />
