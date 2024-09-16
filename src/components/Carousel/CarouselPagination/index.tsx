@@ -15,12 +15,7 @@ type Props = {
 export function CarouselPagination({
   paginationIndex,
   images,
-  scrollX,
 }: Props) {
-  useEffect(() => {
-    console.log(paginationIndex);
-  }, [paginationIndex]);
-
   return (
     <View style={styles.container}>
       {images.map((_, index) => (

@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
   thumbnail: {
     height: 400,
     width: 250,
+    borderRadius: 4,
   },
   title: {
     fontSize: 20,
@@ -26,6 +27,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   detailsContent: {
+    width: "100%",
     paddingHorizontal: 20,
     gap: 15,
   },
