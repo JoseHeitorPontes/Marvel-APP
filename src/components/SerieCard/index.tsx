@@ -25,7 +25,7 @@ export function SerieCard({ serie, ...rest }: Props) {
             : { source: { uri: serieImageUrl } })}
         />
 
-        <Text style={styles.description} numberOfLines={6}>
+        <Text style={styles.description} numberOfLines={5}>
           {serie.description || "No description."}
         </Text>
       </View>

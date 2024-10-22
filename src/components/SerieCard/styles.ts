@@ -24,10 +24,9 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "700",
     color: theme.colors.light,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   description: {
-    width: "62.5%",
     textAlign: "justify",
     color: theme.colors.light,
   },

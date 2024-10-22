@@ -5,22 +5,22 @@ export const styles = StyleSheet.create({
   card: {
     height: 180,
     width: "100%",
-    flexDirection: "row",
-    gap: 10,
     padding: 15,
     marginBottom: 10,
     backgroundColor: theme.colors.dark,
     borderRadius: 5,
   },
   cardBody: {
-    width: "62.5%",
+    width: "100%",
+    flexDirection: "row",
+    gap: 10,
   },
   title: {
     fontSize: 15,
     fontWeight: "700",
     color: theme.colors.light,
     textAlign: "justify",
-    marginBottom: 10,
+    marginBottom: 5,
   },
   image: {
     height: 150,
@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
     borderColor: theme.colors.light,
   },
   description: {
+    width: "100%",
     textAlign: "justify",
     color: theme.colors.light,
   },
